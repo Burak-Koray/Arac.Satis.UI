@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h1 class="mt-4">İlan Ekle</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Yönetim Paneli</li>
+    <li class="breadcrumb-item">İlanlar</li>
+    <li class="breadcrumb-item active">İlan Ekle</li>
+</ol>
+
+<div class="row" ng-controller="VehicleAddController">
+
+    <div class="col-md-12">
+
+        <div class="form-group">
+            <label>İlan Başlığı</label>
+            <input class="form-control" ng-model="vehicle.title" />
+        </div>
+
+        <div class="form-group">
+            <label>İlan Resmi</label>
+            <input class="form-control" type="file" id="flpUpload" />
+        </div>
+
+        <div class="form-group">
+            <img id="vehicleFilePreview" style="max-width:100%;" />
+        </div>
+
+        <div class="form-group">
+            <label>Kategori Seçiniz</label>
+            <select class="form-control" ng-model="vehicle.categoryId">
+                
+                <option ng-value="">Lütfen bir kategori seçiniz.</option>
+                <option ng-repeat="category in categoryList" ng-value="category.id">{{category.name}}</option>
+               
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>İlan İçeriği</label>
+            <textarea class="form-control" id="editor"></textarea>
+        </div>
+
+       
+
+        <div class="form-group">
+            <a class="btn btn-success" ng-click="VehicleAdd()">Ekle</a>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/Admin/ckeditor/ckeditor.js"></script>
+    <script src="~/Admin/pages/vehicleAdd.js"></script>
+    <script>
+        CKEDITOR.replace("editor");
+    </script>
+}

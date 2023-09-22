@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h1 class="mt-4">İlanlar</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Kullanıcı Paneli</li>
+    <li class="breadcrumb-item active">İlanlar</li>
+</ol>
+
+<div class="row" ng-controller="VehicleController">
+    <div class="col-md-12">
+        <a href="/Admin/Vehicle/Add" class="btn-sm btn-success float-right mb-2">Yeni Ekle</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>İlan Adı</td>
+                    <td>Paylaşan</td>
+                    <td>Kategorisi</td>
+                    <td>Durum</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="vehicle in vehicleList">
+                    <td>{{vehicle.id}}</td>
+                    <td>{{vehicle.title}}</td>
+                    <td>{{vehicle.user.name}} {{vehicle.user.surname}}</td>
+                    <td>{{vehicle.category.name}}</td>
+                    <td>{{vehicle.state}}</td>
+                    <td>
+                        <a ng-click="VehicleDelete(vehicle.id)" ng-show="vehicle.state=='Aktif'" class="btn-sm btn-danger">Sil</a>
+                        <a class="btn-sm btn-warning" ng-click="VehicleActive(vehicle.id)" ng-show="vehicle.state=='Silindi'">Aktif Et</a>
+                        <a href="/Admin/Vehicle/Edit?Id={{vehicle.id}}" class="btn-sm btn-primary">Düzenle</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Admin/pages/vehicle.js"></script>
+ }

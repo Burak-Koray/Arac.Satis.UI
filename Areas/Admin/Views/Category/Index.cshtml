@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h1 class="mt-4">Kategoriler</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item">Kullanıcı Paneli</li>
+    <li class="breadcrumb-item active">Kategoriler</li>
+</ol>
+
+<div class="row" ng-controller="CategoryController">
+    <div class="col-md-12">
+        <a href="/Admin/Category/Add" class="btn-sm btn-success float-right mb-3">Yeni Ekle</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Kategori Adı</td>
+                    <td>Durum</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="category in categoryList">
+                    <td>{{category.id}}</td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.state}}</td>
+                    <td>
+                        <a ng-click="CategoryDelete(category.id)" ng-show="category.state=='Aktif'" class="btn-sm btn-danger">Sil</a>
+                        <a class="btn-sm btn-success" ng-click="CategoryActive(category.id)" ng-show="category.state=='Silindi'">Aktif Et</a>
+                        <a href="/Admin/Category/Edit?Id={{category.id}}" class="btn-sm btn-primary">Düzenle</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Admin/pages/category.js"></script>
+ }
